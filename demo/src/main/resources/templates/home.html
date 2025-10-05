@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Spring Boot Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .welcome-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logout-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .user-info {
+            background-color: #e9ecef;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Spring Boot Demo</h1>
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+    
+    <div class="container">
+        <div class="welcome-card">
+            <h2>Welcome to the Home Page!</h2>
+            <p>You have successfully logged into the Spring Boot application.</p>
+            
+            <div class="user-info">
+                <h3>User Information</h3>
+                <p><strong>Username:</strong> <span th:text="${username}">admin</span></p>
+                <p><strong>Status:</strong> Logged in successfully</p>
+            </div>
+            
+            <p>This is a protected page that requires authentication to access.</p>
+            <p>You can now explore the application features!</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Spring Boot Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .login-button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+        .demo-info {
+            margin-top: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Login</h2>
+            <p>Welcome to Spring Boot Demo</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required />
+            </div>
+            
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        
+        <div id="errorMessage" class="error-message">
+            Invalid username or password.
+        </div>
+        
+        <div class="demo-info">
+            <p>Demo credentials:</p>
+            <p>Username: <strong>admin</strong></p>
+            <p>Password: <strong>password</strong></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Simple client-side validation
+            if (username === 'admin' && password === 'password') {
+                // Show success message and redirect to home page
+                alert('Login successful! Welcome to the demo application.');
+                
+                // Create a simple home page
+                document.body.innerHTML = `
+                    <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div style="background-color: #007bff; color: white; padding: 1rem 2rem; border-radius: 8px 8px 0 0; margin: -2rem -2rem 2rem -2rem;">
+                            <h1 style="margin: 0;">Spring Boot Demo</h1>
+                        </div>
+                        <h2>Welcome to the Home Page!</h2>
+                        <p>You have successfully logged into the Spring Boot application.</p>
+                        
+                        <div style="background-color: #e9ecef; padding: 1rem; border-radius: 4px; margin: 1rem 0;">
+                            <h3>User Information</h3>
+                            <p><strong>Username:</strong> ${username}</p>
+                            <p><strong>Status:</strong> Logged in successfully</p>
+                        </div>
+                        
+                        <p>This is a protected page that requires authentication to access.</p>
+                        <p>You can now explore the application features!</p>
+                        
+                        <button onclick="location.reload()" style="background-color: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 1rem;">
+                            Logout
+                        </button>
+                    </div>
+                `;
+            } else {
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
